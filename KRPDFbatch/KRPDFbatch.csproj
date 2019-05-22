@@ -50,10 +50,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>632A8467CE82DEA0B7EFAB1969DAFBA42012C764</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>1D8A650F847B28F658F0859FFF47586074842BB2</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>KRPDFbatch_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>KRPDFbatch_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -101,6 +101,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="KRPDFbatch_1_TemporaryKey.pfx" />
     <None Include="KRPDFbatch_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

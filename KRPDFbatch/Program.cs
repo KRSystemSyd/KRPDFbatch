@@ -34,22 +34,25 @@ namespace KRPDFbatch
             else
             {
                 //TESTER:
-               // gsBatchNumber = "F6L4849C01";
-               // gsReadPDF = Application.StartupPath + @"\test\_COSU6148627410.pdf";
-               
+                //190522 BJER
+                //gsBatchNumber = "FIB2920C01";
+                //gsReadPDF = Application.StartupPath + @"\test\DBEX19030045.pdf";
+                // gsBatchNumber = "F6L4849C01";
+                // gsReadPDF = Application.StartupPath + @"\test\_COSU6148627410.pdf";
+
                 //gsBatchNumber = "FJGJ5A";
                 //gsReadPDF = Application.StartupPath + @"\test\COSU6127979391.pdf";
-               
-               // gsBatchNumber = "355053964";
-               // gsReadPDF = Application.StartupPath + @"\test\2015-77211.pdf";
 
-               // gsBatchNumber = "AF18525B"; 
-              //  gsReadPDF = Application.StartupPath + @"\test\565727393.pdf";
+                // gsBatchNumber = "355053964";
+                // gsReadPDF = Application.StartupPath + @"\test\2015-77211.pdf";
 
-               // gsWritePDF = Application.StartupPath + @"\test\skapade\" + gsBatchNumber + ".pdf";
-          
+                // gsBatchNumber = "AF18525B"; 
+                //  gsReadPDF = Application.StartupPath + @"\test\565727393.pdf";
+
+                 //gsWritePDF = Application.StartupPath + @"\test\skapade\" + gsBatchNumber + ".pdf";
+
                 //MessageBox.Show("Alla argument är inte medskickade!"); // Args:" + args[0] + " " + args[1] + " " + args[2]);
-                Application.Exit();
+                Application.Exit(); //Släck vid test
             }
 
             if (gsBatchNumber != "" && gsReadPDF != "" && gsWritePDF != "")

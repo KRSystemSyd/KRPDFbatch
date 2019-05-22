@@ -68,6 +68,8 @@ namespace KRPDFbatch
                     else
                     {
                         currentPageText = pdfParser.ExtractTextFromPDFBytes(pdfReader.GetPageContent(page));
+                        currentPageText = currentPageText.Replace("\n", "");
+                        currentPageText = currentPageText.Replace("\r", "");
                         if (currentPageText.Contains(searchText))
                         {
                             //MessageBox.Show("Hittad sökt text " + searchText + " på sida " + page);
