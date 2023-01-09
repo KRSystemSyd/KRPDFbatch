@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Windows.Forms;
+
+//#230109 BJER KR System. Ibland har Token bara en character i funktion CheckToken
 
 namespace KRPDFbatch
 {
@@ -109,7 +112,7 @@ namespace KRPDFbatch
         public string ExtractTextFromPDFBytes(byte[] input)
         {
             if (input == null || input.Length == 0) return "";
-
+            
             try
             {
                 string resultString = "";
@@ -223,8 +226,10 @@ namespace KRPDFbatch
                 }
                 return resultString;
             }
-            catch
+            catch //(Exception ex)
             {
+                //MessageBox.Show("ExtractTextFromPDFBytes ec:" + ex);
+                //MessageBox.Show(resultString);
                 return "";
             }
         }
@@ -239,22 +244,48 @@ namespace KRPDFbatch
         /// <returns></returns>
         private bool CheckToken(string[] tokens, char[] recent)
         {
-            foreach (string token in tokens)
+            
+            try
             {
-                if ((recent[_numberOfCharsToKeep - 3] == token[0]) &&
-                    (recent[_numberOfCharsToKeep - 2] == token[1]) &&
-                    ((recent[_numberOfCharsToKeep - 1] == ' ') ||
-                    (recent[_numberOfCharsToKeep - 1] == 0x0d) ||
-                    (recent[_numberOfCharsToKeep - 1] == 0x0a)) &&
-                    ((recent[_numberOfCharsToKeep - 4] == ' ') ||
-                    (recent[_numberOfCharsToKeep - 4] == 0x0d) ||
-                    (recent[_numberOfCharsToKeep - 4] == 0x0a))
-                    )
+                foreach (string token in tokens)
                 {
-                    return true;
+                    if (token.Length < 2) //#230109 BJER KR System. Ibland har Token bara en character
+                    {
+                        if ((recent[_numberOfCharsToKeep - 3] == token[0]) &&
+                            ((recent[_numberOfCharsToKeep - 1] == ' ') ||
+                            (recent[_numberOfCharsToKeep - 1] == 0x0d) ||
+                            (recent[_numberOfCharsToKeep - 1] == 0x0a)) &&
+                            ((recent[_numberOfCharsToKeep - 4] == ' ') ||
+                            (recent[_numberOfCharsToKeep - 4] == 0x0d) ||
+                            (recent[_numberOfCharsToKeep - 4] == 0x0a))
+                            )
+                        {
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        if ((recent[_numberOfCharsToKeep - 3] == token[0]) &&
+                            (recent[_numberOfCharsToKeep - 2] == token[1]) &&
+                            ((recent[_numberOfCharsToKeep - 1] == ' ') ||
+                            (recent[_numberOfCharsToKeep - 1] == 0x0d) ||
+                            (recent[_numberOfCharsToKeep - 1] == 0x0a)) &&
+                            ((recent[_numberOfCharsToKeep - 4] == ' ') ||
+                            (recent[_numberOfCharsToKeep - 4] == 0x0d) ||
+                            (recent[_numberOfCharsToKeep - 4] == 0x0a))
+                            )
+                        {
+                            return true;
+                        }
+                    }
                 }
+                return false;
             }
-            return false;
+            catch //(Exception ec)
+            {
+                //Console.WriteLine(ec.Message);
+                return false;
+            }
         }
         #endregion
     }
