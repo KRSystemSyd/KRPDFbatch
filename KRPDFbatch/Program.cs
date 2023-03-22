@@ -34,9 +34,9 @@ namespace KRPDFbatch
             else
             {
                 //TESTER:
-                //230109 BJER
-                //gsBatchNumber = "MF0VLB";
-                //gsReadPDF = Application.StartupPath + @"\test\POBUPTKMMA225103.pdf";
+                //230322 BJER
+                //gsBatchNumber = "MA0WHA";
+                //gsReadPDF = Application.StartupPath + @"\test\POBUPTKMMA225008.pdf";
                 //gsWritePDF = Application.StartupPath + @"\test\skapade\" + gsBatchNumber + ".pdf";
 
                 //MessageBox.Show("Alla argument är inte medskickade!"); // Args:" + args[0] + " " + args[1] + " " + args[2]);

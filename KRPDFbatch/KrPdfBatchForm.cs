@@ -58,7 +58,21 @@ namespace KRPDFbatch
                     //ITextExtractionStrategy strategy = new LocationTextExtractionStrategy();
 
                     string currentPageText = PdfTextExtractor.GetTextFromPage(pdfReader, page,strategy);
-                    //currentPageText = Encoding.UTF8.GetString(ASCIIEncoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(currentPageText)));
+                   
+
+                    if (currentPageText.Contains(searchText))
+                    {
+                        //MessageBox.Show("Hittad sökt text " + searchText + " på sida " + page);
+                        pageNumber = page;
+                        break;
+                    }
+
+                    //Prova en gång till med UTF8 encoding #230322 BJER
+                    currentPageText = Encoding.UTF8.GetString(ASCIIEncoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(currentPageText)));
+                    currentPageText = currentPageText.Replace("\n", "");
+                    currentPageText = currentPageText.Replace("\r", "");
+                    currentPageText = currentPageText.Replace(" ", "");
+
                     if (currentPageText.Contains(searchText))
                     {
                         //MessageBox.Show("Hittad sökt text " + searchText + " på sida " + page);
@@ -68,6 +82,8 @@ namespace KRPDFbatch
                     else
                     {
                         currentPageText = pdfParser.ExtractTextFromPDFBytes(pdfReader.GetPageContent(page));
+                        //TEST 230322
+                        //currentPageText = Encoding.UTF8.GetString(ASCIIEncoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(currentPageText)));
                         currentPageText = currentPageText.Replace("\n", "");
                         currentPageText = currentPageText.Replace("\r", "");
                         currentPageText = currentPageText.Replace(" ", "");
